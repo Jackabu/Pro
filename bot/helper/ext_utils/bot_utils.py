@@ -170,13 +170,13 @@ def get_readable_message():
                 if download.message.chat.type != 'private':
                     try:
                         chatid = str(download.message.chat.id)[4:]
-                        msg += f'\n<b>𝘽𝙧𝙤𝙩𝙝𝙚𝙧 </b><a href="https://t.me/c/{chatid}/{download.message.message_id}">{download.message.from_user.first_name}</a>  <b>ID </b> <code>{download.message.from_user.id}</code>'
+                        msg += f'\n<b>𝘽𝙧𝙤𝙩𝙝𝙚𝙧 </b><a href="https://t.me/c/{chatid}/{download.message.message_id}</code>'
                     except:
                         pass
                 else:
-                    msg += f'\n\n<b>𝙍𝙚𝙦𝙪𝙚𝙨𝙩 𝘽𝙮 </b> ️<code>{download.message.from_user.first_name}</code>  <b>ID </b> <code>{download.message.from_user.id}</code>'
+                    msg += f'\n\n<b>𝙍𝙚𝙦𝙪𝙚𝙨𝙩 𝘽𝙮 </b> ️<code>{download.message.from_user.first_name}</code>'
                 msg += f"\n<b>𝘽𝙤𝙩 𝙍𝙚𝙨𝙩 ⥄ </b><code>/{BotCommands.CancelMirror} {download.gid()}</code>"
-                msg += f"\n<b>⦿ ⥱ </b>{download.size()}"
+                msg += f"\n\n<b>⦿ ⥱ </b>{download.size()}"
             msg += " "
             if STATUS_LIMIT is not None and index == STATUS_LIMIT:
                 break
