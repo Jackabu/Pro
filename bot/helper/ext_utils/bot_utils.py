@@ -192,9 +192,9 @@ def get_readable_message():
                 elif 'M' in spd:
                     dlspeed_bytes += float(spd.split('M')[0]) * 1048576
             elif download.status() == MirrorStatus.STATUS_UPLOADING:
-                if 'KB/s' in spd:
+                if '⚡️kilobyte' in spd:
                     upspeed_bytes += float(spd.split('K')[0]) * 1024
-                elif 'MB/s' in spd:
+                elif '⚡️megabyte' in spd:
                     upspeed_bytes += float(spd.split('M')[0]) * 1048576
         bmsg += f"\n\n<b>SD ⥄ </b> {get_readable_file_size(dlspeed_bytes)} ⥄ <b>RC ⥄ </b> {get_readable_file_size(upspeed_bytes)}"
         buttons = ButtonMaker()
@@ -265,7 +265,7 @@ def is_appdrive_link(url: str):
     url = re_match(r'https?://(?:\S*\.)?(?:appdrive|driveapp)\.in/\S+', url)
     return bool(url)
 def is_mega_link(url: str):
-    return "mega.nz" in url or "mega.co.nz" in url
+    return "mega.io" in url or "mega.nz" in url
 
 def get_mega_link_type(url: str):
     if "folder" in url:
