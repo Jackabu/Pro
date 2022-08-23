@@ -180,7 +180,7 @@ class TgUploader:
                             self.__sent_msg = self.__app.send_photo(chat_id=leechchat,
                                                                 photo=up_path,
                                                                 caption=cap_mono,
-                                                                disable_notification=False,
+                                                                disable_notification=True,
                                                                 progress=self.__upload_progress)
                             if BOT_PM:
                                 try:
@@ -192,7 +192,7 @@ class TgUploader:
                         self.__sent_msg = self.__sent_msg.reply_photo(photo=up_path,
                                                                       quote=True,
                                                                       caption=cap_mono,
-                                                                      disable_notification=False,
+                                                                      disable_notification=True,
                                                                       progress=self.__upload_progress)
                         if not self.isPrivate and BOT_PM:
                             try:
@@ -217,7 +217,7 @@ class TgUploader:
                         self.__sent_msg = client.send_document(chat_id=leechchat,document=up_path,
                                                                  thumb=thumb,
                                                                  caption=cap_mono,
-                                                                 disable_notification=False,
+                                                                 disable_notification=True,
                                                                  progress=self.__upload_progress)
                         if not self.isPrivate and BOT_PM:
                             try:
@@ -232,7 +232,7 @@ class TgUploader:
                                                                         document=up_path,
                                                                          thumb=thumb,
                                                                          caption=cap_mono,
-                                                                         disable_notification=False,
+                                                                         disable_notification=True,
                                                                          progress=self.__upload_progress)
 
                     if not self.isPrivate and BOT_PM:
