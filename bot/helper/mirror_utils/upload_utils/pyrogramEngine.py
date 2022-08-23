@@ -25,12 +25,12 @@ class TgUploader:
         self.uploaded_bytes = 0
         self._last_uploaded = 0
         self.__listener = listener
-        self.__start_time = time()
+        self.__start_time = time(3)
         self.__total_files = 0
         self.__is_cancelled = False
         self.__as_doc = AS_DOCUMENT
         self.__thumb = f"Thumbnails/{listener.message.from_user.id}.jpg"
-        self.__sent_msg = None
+        self.__sent_msg = 
         self.__msgs_dict = {}
         self.__corrupted = 0
         self.__resource_lock = RLock()
@@ -69,13 +69,13 @@ class TgUploader:
 
     def __upload_file(self, up_path, file_, dirpath):
         if CUSTOM_FILENAME is not None:
-            cap_mono = f"{CUSTOM_FILENAME} <b>{file_}</b>"
+            cap_mono = f"{CUSTOM_FILENAME} <I>{file_}</I>"
             file_ = f"{CUSTOM_FILENAME} {file_}"
             new_path = ospath.join(dirpath, file_)
             osrename(up_path, new_path)
             up_path = new_path
         else:
-            cap_mono = f"<b>{file_}</b>"
+            cap_mono = f"<I>{file_}</I>"
         notMedia = False
         thumb = self.__thumb
         self.__is_corrupted = False
@@ -113,7 +113,7 @@ class TgUploader:
                                                                          height=height,
                                                                          thumb=thumb,
                                                                          supports_streaming=True,
-                                                                         disable_notification=True,
+                                                                         disable_notification=False,
                                                                          progress=self.__upload_progress)
                             if not self.isPrivate and BOT_PM:
                                 try:
@@ -180,7 +180,7 @@ class TgUploader:
                             self.__sent_msg = self.__app.send_photo(chat_id=leechchat,
                                                                 photo=up_path,
                                                                 caption=cap_mono,
-                                                                disable_notification=True,
+                                                                disable_notification=False,
                                                                 progress=self.__upload_progress)
                             if BOT_PM:
                                 try:
@@ -192,7 +192,7 @@ class TgUploader:
                         self.__sent_msg = self.__sent_msg.reply_photo(photo=up_path,
                                                                       quote=True,
                                                                       caption=cap_mono,
-                                                                      disable_notification=True,
+                                                                      disable_notification=False,
                                                                       progress=self.__upload_progress)
                         if not self.isPrivate and BOT_PM:
                             try:
@@ -217,7 +217,7 @@ class TgUploader:
                         self.__sent_msg = client.send_document(chat_id=leechchat,document=up_path,
                                                                  thumb=thumb,
                                                                  caption=cap_mono,
-                                                                 disable_notification=True,
+                                                                 disable_notification=False,
                                                                  progress=self.__upload_progress)
                         if not self.isPrivate and BOT_PM:
                             try:
@@ -232,7 +232,7 @@ class TgUploader:
                                                                         document=up_path,
                                                                          thumb=thumb,
                                                                          caption=cap_mono,
-                                                                         disable_notification=True,
+                                                                         disable_notification=False,
                                                                          progress=self.__upload_progress)
 
                     if not self.isPrivate and BOT_PM:
@@ -284,4 +284,4 @@ class TgUploader:
     def cancel_download(self):
         self.__is_cancelled = True
         LOGGER.info(f"Cancelling Upload - {self.name}")
-        self.__listener.onUploadError('upload has been stopped ☢ !')
+        self.__listener.onUploadError('upload has been stopped')
